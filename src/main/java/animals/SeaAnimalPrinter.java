@@ -4,18 +4,21 @@ import animals.model.Animal;
 import animals.model.AnimalFactory;
 import animals.model.SeaAnimalFamily;
 
+import java.io.PrintStream;
 import java.util.EnumSet;
 
 public class SeaAnimalPrinter {
     private final AnimalFactory animalFactory;
     private int averagePositionAboveSea = 0;
+    private PrintStream printStream;
 
-    public SeaAnimalPrinter(AnimalFactory animalFactory) {
+    public SeaAnimalPrinter(AnimalFactory animalFactory, PrintStream printStream) {
         this.animalFactory = animalFactory;
+        this.printStream = printStream;
     }
 
-    public static SeaAnimalPrinter instance(AnimalFactory animalFactory) {
-        return new SeaAnimalPrinter(animalFactory);
+    public static SeaAnimalPrinter instance(AnimalFactory animalFactory, PrintStream printStream) {
+        return new SeaAnimalPrinter(animalFactory, printStream);
     }
 
     public void print() {
@@ -31,7 +34,7 @@ public class SeaAnimalPrinter {
                 t -> averagePositionAboveSea += animalFactory.get(t).averagePositionAboveSea()
         );
 
-        System.out.println(String.format(
+        printStream.println(String.format(
                 "There are %d land animals. Their average position above sea is %d meters.",
                 animalsCount, averagePositionAboveSea));
     }
@@ -39,7 +42,7 @@ public class SeaAnimalPrinter {
     private void printSeaAnimalsDetails() {
         EnumSet.allOf(SeaAnimalFamily.class).forEach(type -> {
             Animal animal = animalFactory.get(type);
-            System.out.println(String.format(
+            printStream.println(String.format(
                     "The %s has an average position above sea is %d meters.",
                     animal.name(), animal.averagePositionAboveSea() ));
         });

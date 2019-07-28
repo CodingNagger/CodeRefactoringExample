@@ -9,3 +9,6 @@ build
 .settings
 .vscode
 .project
+
+# Add out folder
+out

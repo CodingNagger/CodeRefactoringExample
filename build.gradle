@@ -26,6 +26,7 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.23.4'
 }
 
 application {
