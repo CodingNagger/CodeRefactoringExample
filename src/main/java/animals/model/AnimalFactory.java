@@ -33,4 +33,11 @@ public class AnimalFactory {
             default: throw new IllegalArgumentException(type.description());
         }
     }
+
+    public Animal[] getSeaAnimals() {
+        return new Animal[] {
+                blueFish,
+                kraken
+        };
+    }
 }
