@@ -23,21 +23,17 @@ public class AnimalFactory {
         kraken = new Kraken();
     }
 
-    public Animal get(AnimalFamily type) {
-        switch (type.description()) {
-            case "Doggo": return dog;
-            case "Spider": return spider;
-            case "Blue Fish": return blueFish;
-            case "Kraken": return kraken;
-        
-            default: throw new IllegalArgumentException(type.description());
-        }
-    }
-
     public Animal[] getSeaAnimals() {
         return new Animal[] {
                 blueFish,
                 kraken
+        };
+    }
+
+    public Animal[] getLandAnimals() {
+        return new Animal[] {
+                dog,
+                spider
         };
     }
 }

@@ -10,7 +10,7 @@ public class App {
     private final SeaAnimalPrinter seaAnimalPrinter;
 
     public App(AnimalFactory animalFactory) {
-        this.landAnimalPrinter = LandAnimalPrinter.instance(animalFactory);
+        this.landAnimalPrinter = LandAnimalPrinter.instance(animalFactory, System.out);
         this.seaAnimalPrinter = SeaAnimalPrinter.instance(animalFactory, System.out);
     }
 

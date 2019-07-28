@@ -2,20 +2,23 @@ package animals;
 
 import animals.model.Animal;
 import animals.model.AnimalFactory;
-import animals.model.LandAnimalFamily;
 
-import java.util.EnumSet;
+import java.io.PrintStream;
+import java.util.function.Consumer;
 
 public class LandAnimalPrinter {
     private final AnimalFactory animalFactory;
-    private int averagePositionAboveSea = 0;
+    private PrintStream printStream;
+    private int averagePositionAboveSea;
+    private int animalsCount;
 
-    private LandAnimalPrinter(AnimalFactory animalFactory) {
+    public LandAnimalPrinter(AnimalFactory animalFactory, PrintStream printStream) {
         this.animalFactory = animalFactory;
+        this.printStream = printStream;
     }
 
-    public static LandAnimalPrinter instance(AnimalFactory animalFactory) {
-        return new LandAnimalPrinter(animalFactory);
+    public static LandAnimalPrinter instance(AnimalFactory animalFactory, PrintStream printStream) {
+        return new LandAnimalPrinter(animalFactory, printStream);
     }
 
     public void print() {
@@ -24,24 +27,32 @@ public class LandAnimalPrinter {
     }
 
     private void printLandAnimalsSummary() {
-        int animalsCount = EnumSet.allOf(LandAnimalFamily.class).size();
+        animalsCount = 0;
         averagePositionAboveSea = 0;
 
-        EnumSet.allOf(LandAnimalFamily.class).forEach(
-                t -> averagePositionAboveSea += animalFactory.get(t).averagePositionAboveSea()
+        doThatThingWithAnimals(animal ->
+                {
+                    animalsCount++;
+                    averagePositionAboveSea += animal.averagePositionAboveSea();
+                }
         );
 
-        System.out.println(String.format(
+        printStream.println(String.format(
                 "There are %d land animals. Their average position above sea is %d meters.",
                 animalsCount, averagePositionAboveSea));
     }
 
     private void printLandAnimalsDetails() {
-        EnumSet.allOf(LandAnimalFamily.class).forEach(type -> {
-            Animal animal = animalFactory.get(type);
-            System.out.println(String.format(
-                    "The %s has an average position above sea is %d meters.",
-                    animal.name(), animal.averagePositionAboveSea() ));
-        });
+        doThatThingWithAnimals(animal ->
+                printStream.println(String.format(
+                        "The %s has an average position above sea is %d meters.",
+                        animal.name(), animal.averagePositionAboveSea() ))
+        );
+    }
+
+    private void doThatThingWithAnimals (Consumer<Animal> thing) {
+        for (Animal animal : animalFactory.getLandAnimals()) {
+            thing.accept(animal);
+        }
     }
 }
