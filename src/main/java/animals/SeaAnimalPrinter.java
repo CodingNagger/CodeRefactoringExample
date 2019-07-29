@@ -4,17 +4,13 @@ import animals.model.Animal;
 import animals.model.AnimalFactory;
 
 import java.io.PrintStream;
-import java.util.function.Consumer;
 
 public class SeaAnimalPrinter extends AnimalPrinter {
-    private final AnimalFactory animalFactory;
-    private PrintStream printStream;
     private int averagePositionAboveSea;
     private int animalsCount;
 
     public SeaAnimalPrinter(AnimalFactory animalFactory, PrintStream printStream) {
-        this.animalFactory = animalFactory;
-        this.printStream = printStream;
+        super(animalFactory, printStream);
     }
 
     public static SeaAnimalPrinter instance(AnimalFactory animalFactory, PrintStream printStream) {
@@ -37,14 +33,14 @@ public class SeaAnimalPrinter extends AnimalPrinter {
             }
         );
 
-        printStream.println(String.format(
+        getPrintStream().println(String.format(
                 "There are %d land animals. Their average position above sea is %d meters.",
                 animalsCount, averagePositionAboveSea));
     }
 
     private void printSeaAnimalsDetails() {
         doThatThingWithAnimals(animal ->
-            printStream.println(String.format(
+            getPrintStream().println(String.format(
                     "The %s has an average position above sea is %d meters.",
                     animal.name(), animal.averagePositionAboveSea() ))
         );
@@ -52,6 +48,6 @@ public class SeaAnimalPrinter extends AnimalPrinter {
 
     @Override
     protected Animal[] getAnimals() {
-        return animalFactory.getSeaAnimals();
+        return getAnimalFactory().getSeaAnimals();
     }
 }
