@@ -6,7 +6,7 @@ import animals.model.AnimalFactory;
 import java.io.PrintStream;
 import java.util.function.Consumer;
 
-public class SeaAnimalPrinter {
+public class SeaAnimalPrinter extends AnimalPrinter {
     private final AnimalFactory animalFactory;
     private PrintStream printStream;
     private int averagePositionAboveSea;
@@ -50,9 +50,8 @@ public class SeaAnimalPrinter {
         );
     }
 
-    private void doThatThingWithAnimals (Consumer<Animal> thing) {
-        for (Animal animal : animalFactory.getSeaAnimals()) {
-            thing.accept(animal);
-        }
+    @Override
+    protected Animal[] getAnimals() {
+        return animalFactory.getSeaAnimals();
     }
 }
