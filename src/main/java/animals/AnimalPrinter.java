@@ -9,6 +9,8 @@ import java.util.function.Consumer;
 public abstract class AnimalPrinter {
     private final AnimalFactory animalFactory;
     private final PrintStream printStream;
+    private int averagePositionAboveSea;
+    private int animalsCount;
 
     protected AnimalPrinter(AnimalFactory animalFactory, PrintStream printStream) {
         this.animalFactory = animalFactory;
@@ -34,6 +36,29 @@ public abstract class AnimalPrinter {
     }
 
     protected abstract Animal[] getAnimals();
+
+    public void print() {
+        printAnimalsSummary();
+        printAnimalsDetails();
+    }
+
+    private void printAnimalsSummary() {
+        animalsCount = 0;
+        averagePositionAboveSea = 0;
+
+        doThatThingWithAnimals(animal ->
+            {
+                animalsCount++;
+                averagePositionAboveSea += animal.averagePositionAboveSea();
+            }
+        );
+
+        getPrintStream().println(String.format(
+                "There are %d %s animals. Their average position above sea is %d meters.",
+                animalsCount, getFamilyQualifier(), averagePositionAboveSea));
+    }
+
+    protected abstract String getFamilyQualifier();
 
     protected PrintStream getPrintStream() {
         return printStream;
