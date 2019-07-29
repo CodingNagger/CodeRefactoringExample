@@ -17,7 +17,7 @@ public class SeaAnimalPrinterTest {
 
         printer.print();
 
-        orderChecker.verify(mockedInputStream).println("There are 2 land animals. Their average position above sea is -20100 meters.");
+        orderChecker.verify(mockedInputStream).println("There are 2 sea animals. Their average position above sea is -20100 meters.");
         orderChecker.verify(mockedInputStream).println("The Blue Fish has an average position above sea is -100 meters.");
         orderChecker.verify(mockedInputStream).println("The Kraken has an average position above sea is -20000 meters.");
     }

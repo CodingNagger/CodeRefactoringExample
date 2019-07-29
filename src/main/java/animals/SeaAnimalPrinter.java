@@ -34,7 +34,7 @@ public class SeaAnimalPrinter extends AnimalPrinter {
         );
 
         getPrintStream().println(String.format(
-                "There are %d land animals. Their average position above sea is %d meters.",
+                "There are %d sea animals. Their average position above sea is %d meters.",
                 animalsCount, averagePositionAboveSea));
     }
 
