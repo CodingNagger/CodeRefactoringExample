@@ -25,6 +25,14 @@ public abstract class AnimalPrinter {
         }
     }
 
+    protected void printAnimalsDetails() {
+        doThatThingWithAnimals(animal ->
+                getPrintStream().println(String.format(
+                        "The %s has an average position above sea is %d meters.",
+                        animal.name(), animal.averagePositionAboveSea() ))
+        );
+    }
+
     protected abstract Animal[] getAnimals();
 
     protected PrintStream getPrintStream() {

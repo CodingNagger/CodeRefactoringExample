@@ -19,7 +19,7 @@ public class SeaAnimalPrinter extends AnimalPrinter {
 
     public void print() {
         printSeaAnimalsSummary();
-        printSeaAnimalsDetails();
+        printAnimalsDetails();
     }
 
     private void printSeaAnimalsSummary() {
@@ -36,14 +36,6 @@ public class SeaAnimalPrinter extends AnimalPrinter {
         getPrintStream().println(String.format(
                 "There are %d land animals. Their average position above sea is %d meters.",
                 animalsCount, averagePositionAboveSea));
-    }
-
-    private void printSeaAnimalsDetails() {
-        doThatThingWithAnimals(animal ->
-            getPrintStream().println(String.format(
-                    "The %s has an average position above sea is %d meters.",
-                    animal.name(), animal.averagePositionAboveSea() ))
-        );
     }
 
     @Override
