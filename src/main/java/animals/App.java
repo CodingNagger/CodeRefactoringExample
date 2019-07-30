@@ -10,15 +10,18 @@ import java.io.PrintStream;
 public class App {
     private final LandAnimalPrinter landAnimalPrinter;
     private final SeaAnimalPrinter seaAnimalPrinter;
+    private final CodingAnimalPrinter codingAnimalPrinter;
 
     public App(AnimalFactory animalFactory, PrintStream printStream) {
         this.landAnimalPrinter = LandAnimalPrinter.instance(animalFactory, printStream);
         this.seaAnimalPrinter = SeaAnimalPrinter.instance(animalFactory, printStream);
+        this.codingAnimalPrinter = CodingAnimalPrinter.instance(animalFactory, printStream);
     }
 
     public void run() {
         landAnimalPrinter.print();
         seaAnimalPrinter.print();
+        codingAnimalPrinter.print();
     }
 
     public static void main(String[] args) {

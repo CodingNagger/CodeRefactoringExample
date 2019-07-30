@@ -30,5 +30,9 @@ public class AppTest {
             .println("The Blue Fish has an average position above sea is -100 meters.");
         orderChecker.verify(mockedInputStream)
             .println("The Kraken has an average position above sea is -20000 meters.");
+        orderChecker.verify(mockedInputStream)
+            .println("There are 1 coding animals. Their average position above sea is 69 meters.");
+        orderChecker.verify(mockedInputStream)
+            .println("The Coding Nagger has an average position above sea is 69 meters.");
     }
 }
