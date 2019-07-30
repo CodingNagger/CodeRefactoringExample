@@ -7,6 +7,7 @@ public class AnimalFactory {
     Spider spider;
     BlueFish blueFish;
     Kraken kraken;
+    CodingNagger codingNagger;
 
     public static AnimalFactory instance() {
         if (instance == null) {
@@ -21,6 +22,7 @@ public class AnimalFactory {
         spider = new Spider();
         blueFish = new BlueFish();
         kraken = new Kraken();
+        codingNagger = new CodingNagger();
     }
 
     public Animal[] getSeaAnimals() {
@@ -34,6 +36,12 @@ public class AnimalFactory {
         return new Animal[] {
                 dog,
                 spider
+        };
+    }
+
+    public Animal[] getCodingAnimals() {
+        return new Animal[] {
+                codingNagger
         };
     }
 }

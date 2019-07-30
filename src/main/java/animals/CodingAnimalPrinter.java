@@ -16,7 +16,7 @@ public class CodingAnimalPrinter extends AnimalPrinter {
 
     @Override
     protected Animal[] getAnimals() {
-        return new Animal[0];
+        return getAnimalFactory().getCodingAnimals();
     }
 
     @Override
