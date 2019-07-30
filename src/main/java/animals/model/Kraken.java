@@ -1,10 +1,8 @@
 package animals.model;
 
-import static animals.model.SeaAnimalFamily.KRAKEN;
-
 public class Kraken implements Animal {
     public String name() {
-        return KRAKEN.description();
+        return "Kraken";
     }
 
     public int averagePositionAboveSea() {

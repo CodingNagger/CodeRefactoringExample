@@ -1,10 +1,8 @@
 package animals.model;
 
-import static animals.model.LandAnimalFamily.SPIDER;
-
 public class Spider implements Animal {
     public String name() {
-        return SPIDER.description();
+        return "Spider";
     }
 
     public int averagePositionAboveSea() {
