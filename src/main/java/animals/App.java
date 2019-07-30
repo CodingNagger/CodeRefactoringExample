@@ -5,13 +5,15 @@ package animals;
 
 import animals.model.AnimalFactory;
 
+import java.io.PrintStream;
+
 public class App {
     private final LandAnimalPrinter landAnimalPrinter;
     private final SeaAnimalPrinter seaAnimalPrinter;
 
-    public App(AnimalFactory animalFactory) {
-        this.landAnimalPrinter = LandAnimalPrinter.instance(animalFactory, System.out);
-        this.seaAnimalPrinter = SeaAnimalPrinter.instance(animalFactory, System.out);
+    public App(AnimalFactory animalFactory, PrintStream printStream) {
+        this.landAnimalPrinter = LandAnimalPrinter.instance(animalFactory, printStream);
+        this.seaAnimalPrinter = SeaAnimalPrinter.instance(animalFactory, printStream);
     }
 
     public void run() {
@@ -20,6 +22,6 @@ public class App {
     }
 
     public static void main(String[] args) {
-        new App(AnimalFactory.instance()).run();
+        new App(AnimalFactory.instance(), System.out).run();
     }
 }
